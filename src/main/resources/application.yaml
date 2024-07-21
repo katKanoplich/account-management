@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    username: root
+    password: kate110276
+    url: jdbc:mysql://localhost:3306/accountmanagement
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+server:
+  port: 8080
+

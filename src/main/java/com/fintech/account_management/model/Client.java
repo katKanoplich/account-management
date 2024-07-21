@@ -7,6 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.security.Principal;
 import java.util.Collection;
 import java.util.List;
 
@@ -19,7 +20,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Accessors(chain = true)
-public class Client implements UserDetails {
+public class Client implements UserDetails{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -44,6 +45,7 @@ public class Client implements UserDetails {
 //    @OneToOne
 //    @JoinColumn(name = "account_id")
 //    private Account account;
+
 
 
     @Override

@@ -23,7 +23,7 @@ public class Account {
     @Column(nullable = false)
     private boolean isBlocked;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "client_id", nullable = false)
     private Client client;
 

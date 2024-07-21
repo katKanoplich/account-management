@@ -14,6 +14,7 @@ public interface ClientRepository extends JpaRepository<Client, Long>, SearchEng
     default Optional<Client> findUserByUserAuthentication(Auth userAuth) {
         return findByAuthentication(userAuth);
     }
-    Client findByAuthentication_Login(String login);
+
+    long findClientByAuthentication(Client client);
 
 }

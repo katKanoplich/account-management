@@ -42,11 +42,6 @@ public class Client implements UserDetails{
     @JoinColumn(name = "authentication")
     private Auth authentication;
 
-//    @OneToOne
-//    @JoinColumn(name = "account_id")
-//    private Account account;
-
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

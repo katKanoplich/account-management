@@ -19,69 +19,25 @@ public class SecurityConfig {
     private final JwtAuthenticationFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;
 
-//    @Bean
-//    @SuppressWarnings("removal")
-//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//        http
-//
-//                .csrf()
-//                .disable()
-//                .authorizeHttpRequests()
-//                .anyRequest()
-//                .permitAll()
-//
-//                .and()
-////                .authorizeHttpRequests((authorize) ->
-////                        authorize
-////                                .requestMatchers("/authentication/register/client", "/authentication/register/admin", "/authentication/authentication").permitAll()
-////                                .anyRequest().authenticated()
-////                )
-//
-//                .sessionManagement()
-//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//                .and()
-//                .authenticationProvider(authenticationProvider)
-//                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
-//        return http.build();
-//    }
 
-//    @Bean
-//    @SuppressWarnings("removal")
-//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//        http
-//                .csrf().disable()
-//                .authorizeHttpRequests(authorize ->
-//                        authorize
-//                                .requestMatchers("/authentication/register/client", "/authentication/register/admin", "/authentication/authentication").permitAll()
-//                                .requestMatchers("api/admin/**").hasRole("ADMIN")
-//                                .anyRequest().authenticated()
-//                )
-//                .sessionManagement()
-//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//                .and()
-//                .authenticationProvider(authenticationProvider)
-//                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
-//
-//        return http.build();
-//    }
-@Bean
-@SuppressWarnings("removal")
-public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-    http
-            .csrf().disable()
-            .authorizeHttpRequests(authorize ->
-                    authorize
-                            .requestMatchers("/authentication/register/client", "/authentication/register/admin", "/authentication/authentication").permitAll()
-                            .requestMatchers("api/admin/**").hasAuthority("ADMIN")
-                            .requestMatchers("/api/clients/**").hasAuthority("CLIENT")
-                            .anyRequest().authenticated()
-            )
-            .sessionManagement()
-            .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            .and()
-            .authenticationProvider(authenticationProvider)
-            .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+    @Bean
+    @SuppressWarnings("removal")
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+                .csrf().disable()
+                .authorizeHttpRequests(authorize ->
+                        authorize
+                                .requestMatchers("/authentication/register/client", "/authentication/register/admin", "/authentication/authentication").permitAll()
+                                .requestMatchers("api/admin/**").hasAuthority("ADMIN")
+                                .requestMatchers("/api/clients/**").hasAuthority("CLIENT")
+                                .anyRequest().authenticated()
+                )
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .authenticationProvider(authenticationProvider)
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
-    return http.build();
-}
+        return http.build();
+    }
 }
